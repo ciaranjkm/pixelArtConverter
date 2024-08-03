@@ -33,9 +33,8 @@ namespace pixelArtConverter
         public MainWindow()
         {
             InitializeComponent();
-            saveButton.IsEnabled = true;
+            saveButton.IsEnabled = false;
             convertButton.IsEnabled = false;
-            pixelDesnityCB.IsEnabled = false;
         }
 
         Bitmap original = new Bitmap(1,1);

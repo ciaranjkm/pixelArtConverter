@@ -31,7 +31,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
-                <Button x:Name="convertButton" Grid.Column="0" Content="Convert Image" Margin="5px" Click="convertButton_Click"/>
+                <Button x:Name="convertButton" Grid.Column="0" Content="Convert Image w/ Pixel Density ->" Margin="5px" Click="convertButton_Click"/>
                 <ComboBox x:Name="pixelDesnityCB" Grid.Column="1" Margin="5px">
                     <ComboBoxItem Content="1"/>
                     <ComboBoxItem Content="2"/>
