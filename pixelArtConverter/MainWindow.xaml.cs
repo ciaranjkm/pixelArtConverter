@@ -16,7 +16,6 @@ using System.Windows.Shapes;
 using System.Configuration;
 using System.Windows.Interop;
 using System.Drawing.Imaging;
-using System;
 
 namespace pixelArtConverter
 {
@@ -35,10 +34,11 @@ namespace pixelArtConverter
             InitializeComponent();
             saveButton.IsEnabled = false;
             convertButton.IsEnabled = false;
+            pixelDensityCB.IsEnabled = false;
         }
 
-        Bitmap original = new Bitmap(1,1);
-        Bitmap newImage = new Bitmap(1,1);
+        Bitmap original = new Bitmap(1, 1);
+        Bitmap newImage = new Bitmap(1, 1);
 
         System.Drawing.Color[] clrs = new System.Drawing.Color[1];
         Graphics g = null;
@@ -60,6 +60,10 @@ namespace pixelArtConverter
                     original = new Bitmap(filePath);
                     BitmapImage orig = new BitmapImage(new Uri(filePath));
                     originalImageBox.Source = orig;
+
+                    convertButton.IsEnabled = true;
+                    pixelDensityCB.IsEnabled = true;
+                    pixelDensityCB.SelectedIndex = 3;
                 }
                 catch
                 {
@@ -71,9 +75,7 @@ namespace pixelArtConverter
                 MessageBox.Show("Unable to select a file, try again.");
             }
 
-            convertButton.IsEnabled = true;
-            pixelDesnityCB.IsEnabled = true;
-            pixelDesnityCB.SelectedIndex = 3;
+            
         }
 
         //convert image to pixel art version and display in the newImageBox control.
@@ -100,7 +102,7 @@ namespace pixelArtConverter
             }
             string[] colourArr = colourString.Split(',');
             clrs = new System.Drawing.Color[colourArr.Length];
-            
+
 
             for (int v = 0; v < colourArr.Length; v++)
             {
@@ -114,7 +116,7 @@ namespace pixelArtConverter
                 }
             }
 
-            int num = pixelDesnityCB.SelectedIndex + 1;
+            int num = pixelDensityCB.SelectedIndex + 1;
             newImage = new Bitmap(original.Width, original.Height);
 
             using (g = Graphics.FromImage(newImage))
@@ -163,7 +165,8 @@ namespace pixelArtConverter
                 newImageBox.Source = temp;
 
                 saveButton.IsEnabled = true;
-            }    
+                fileFormatCB.IsEnabled = true;
+            }
         }
 
         //https://stackoverflow.com/questions/6484357/converting-bitmapimage-to-bitmap-and-vice-versa
@@ -250,10 +253,29 @@ namespace pixelArtConverter
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog sv = new SaveFileDialog();
-            sv.Filter = "Image Files (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF";
             sv.ShowDialog();
+            
+            switch(fileFormatCB.Text)
+            {
+                case ".png":
+                    sv.DefaultExt = ".png";
+                    newImage.Save(sv.FileName + ".png");
+                    break;
+                case ".jpg":
+                    sv.DefaultExt = ".jpg";
+                    newImage.Save(sv.FileName + ".jpg");
+                    break;
+                case ".bmp":
+                    sv.DefaultExt = ".bmp";
+                    newImage.Save(sv.FileName + ".bmp");
+                    break;
+                default:
+                    sv.DefaultExt = ".png";
+                    newImage.Save(sv.FileName + ".png");
+                    break;
 
-            newImage.Save(sv.FileName, ImageFormat.Png);
+
+            }
         }
     }
 }

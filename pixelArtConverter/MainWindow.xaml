@@ -32,7 +32,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <Button x:Name="convertButton" Grid.Column="0" Content="Convert Image w/ Pixel Density ->" Margin="5px" Click="convertButton_Click"/>
-                <ComboBox x:Name="pixelDesnityCB" Grid.Column="1" Margin="5px">
+                <ComboBox x:Name="pixelDensityCB" Grid.Column="1" Margin="5px">
                     <ComboBoxItem Content="1"/>
                     <ComboBoxItem Content="2"/>
                     <ComboBoxItem Content="3"/>
@@ -53,9 +53,22 @@
                 <RowDefinition x:Name="saveRow"/>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-
+            
             <Image x:Name="newImageBox" Margin="5px" Source="assets/place_holder2.png" Grid.Column="2" Grid.Row="0"/>
-            <Button x:Name="saveButton" Content="Save Image as PNG" Grid.Row="1" IsEnabled="False" Click="saveButton_Click" Margin="5px"/>
+
+            <Grid x:Name="saveGrid" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Button x:Name="saveButton" Content="Save Image as PNG" Grid.Row="1" IsEnabled="False" Click="saveButton_Click" Margin="5px"/>
+                <ComboBox x:Name="fileFormatCB" Grid.Column="1" Margin="5px" IsEnabled="False" IsEditable="False">
+                    <ComboBoxItem Content=".png"/>
+                    <ComboBoxItem Content=".jpg"/>
+                    <ComboBoxItem Content=".bmp"/>
+                </ComboBox>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
