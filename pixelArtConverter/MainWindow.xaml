@@ -62,7 +62,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
-                <Button x:Name="saveButton" Content="Save Image as PNG" Grid.Row="1" IsEnabled="False" Click="saveButton_Click" Margin="5px"/>
+                <Button x:Name="saveButton" Content="Save Image as ->" Grid.Row="1" IsEnabled="False" Click="saveButton_Click" Margin="5px"/>
                 <ComboBox x:Name="fileFormatCB" Grid.Column="1" Margin="5px" IsEnabled="False" IsEditable="False">
                     <ComboBoxItem Content=".png"/>
                     <ComboBoxItem Content=".jpg"/>

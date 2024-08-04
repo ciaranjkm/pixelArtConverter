@@ -273,8 +273,6 @@ namespace pixelArtConverter
                     sv.DefaultExt = ".png";
                     newImage.Save(sv.FileName + ".png");
                     break;
-
-
             }
         }
     }
